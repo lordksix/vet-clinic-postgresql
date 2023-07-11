@@ -12,4 +12,3 @@ CREATE TABLE animals (
 /* Part 2 */
 
 ALTER TABLE animals ADD COLUMN species VARCHAR (50);
-C:\Users\Wlad\Documents\GitHub\vet-clinic-postgresql\schema.sql
