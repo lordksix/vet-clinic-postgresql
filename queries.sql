@@ -71,7 +71,7 @@ SELECT name, full_name FROM animals FULL JOIN owners on owners.id = animals.owne
 SELECT species.name, COUNT(*) as total FROM animals JOIN species on species.id = animals.species_id GROUP BY species.name;
 /* Question 5 */
 SELECT animals.name, full_name, species.name FROM animals JOIN owners on owners.id = animals.owner_id JOIN species on species.id= animals.species_id WHERE full_name = 'Jennifer Orwell' and species.name = 'Digimon';
-/* Question 5 */
-SELECT name, full_name, escape_attempts FROM animals JOIN owners on owners.id = animals.owner_id WHERE full_name = 'Dean Winchester' and escape_attempts = 0;
 /* Question 6 */
+SELECT name, full_name, escape_attempts FROM animals JOIN owners on owners.id = animals.owner_id WHERE full_name = 'Dean Winchester' and escape_attempts = 0;
+/* Question 7 */
 SELECT full_name, COUNT(*) as total  FROM animals JOIN owners on owners.id= animals.owner_id GROUP BY full_name ORDER BY total DESC LIMIT 1;
