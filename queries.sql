@@ -75,3 +75,24 @@ SELECT animals.name, full_name, species.name FROM animals JOIN owners on owners.
 SELECT name, full_name, escape_attempts FROM animals JOIN owners on owners.id = animals.owner_id WHERE full_name = 'Dean Winchester' and escape_attempts = 0;
 /* Question 7 */
 SELECT full_name, COUNT(*) as total  FROM animals JOIN owners on owners.id= animals.owner_id GROUP BY full_name ORDER BY total DESC LIMIT 1;
+
+/* Part 4 */
+
+/* Question 1 */
+SELECT vets.name, date_of_visit, animals.name FROM visits JOIN animals on animals.id = visits.animals_id JOIN vets on vets.id = visits.vets_id WHERE vets.name = 'William Tatcher' ORDER BY date_of_visit DESC LIMIT 1;
+/* Question 2 */
+SELECT vets.name, species.name, COUNT(species.name) as total_animals FROM visits JOIN animals on animals.id = visits.animals_id JOIN species on species.id = animals.species_id  JOIN vets on vets.id = visits.vets_id WHERE vets.name = 'Stephanie Mendez' GROUP BY species.name, vets.name;
+/* Question 3 */
+SELECT vets.name, species.name as specialization FROM specializations FULL JOIN vets on vets.id = specializations.vets_id FULL JOIN species ON species.id = specializations.species_id;
+/* Question 4 */
+SELECT vets.name, date_of_visit, animals.name FROM visits JOIN animals on animals.id = visits.animals_id JOIN vets on vets.id = visits.vets_id WHERE vets.name = 'Stephanie Mendez' AND (date_of_visit > '2020-04-01' and date_of_visit < '2020-09-01') ORDER BY date_of_visit;
+/* Question 5 */
+SELECT animals.name, COUNT(date_of_visit) as total_visits FROM visits JOIN animals on animals.id = visits.animals_id GROUP BY animals.name ORDER BY total_visits DESC LIMIT 1;
+/* Question 6 */
+SELECT vets.name, date_of_visit, animals.name FROM visits JOIN animals on animals.id = visits.animals_id JOIN vets on vets.id = visits.vets_id WHERE vets.name = 'Maisy Smith' ORDER BY date_of_visit LIMIT 1;
+/* Question 7 */
+SELECT animals.name, date_of_birth, escape_attempts, neutered, weight_kg, date_of_visit, vets.name as vets_name, vets.age as vets_age, date_of_graduation FROM visits JOIN animals on animals.id = visits.animals_id JOIN vets on vets.id = visits.vets_id ORDER BY date_of_visit DESC LIMIT 1;
+/* Question 8 */
+SELECT vets.name, COUNT(date_of_visit) as total_visits FROM vets FULL JOIN specializations on vets.id = specializations.vets_id JOIN visits on vets.id = visits.vets_id FULL JOIN species on species.id = specializations.species_id WHERE species.name is NULL GROUP BY vets.name;
+/* Question 9 */
+SELECT vets.name, species.name, COUNT(species.name) as total_visits_type_animal FROM vets FULL JOIN specializations on vets.id = specializations.vets_id JOIN visits on vets.id = visits.vets_id JOIN animals on animals.id = visits.animals_id JOIN species on species.id = animals.species_id WHERE vets.name = 'Maisy Smith' GROUP BY vets.name, species.name ORDER BY total_visits_type_animal DESC LIMIT 1;
