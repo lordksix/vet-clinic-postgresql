@@ -95,4 +95,7 @@ SELECT animals.name, date_of_birth, escape_attempts, neutered, weight_kg, date_o
 /* Question 8 */
 SELECT vets.name, COUNT(date_of_visit) as total_visits FROM vets FULL JOIN specializations on vets.id = specializations.vets_id JOIN visits on vets.id = visits.vets_id FULL JOIN species on species.id = specializations.species_id WHERE species.name is NULL GROUP BY vets.name;
 /* Question 9 */
-SELECT vets.name, species.name, COUNT(species.name) as total_visits_type_animal FROM vets FULL JOIN specializations on vets.id = specializations.vets_id JOIN visits on vets.id = visits.vets_id JOIN animals on animals.id = visits.animals_id JOIN species on species.id = animals.species_id WHERE vets.name = 'Maisy Smith' GROUP BY vets.name, species.name ORDER BY total_visits_type_animal DESC LIMIT 1;
+/* ORIGINAL CORRECT */
+/* SELECT vets.name, species.name, COUNT(species.name) as total_visits_type_animal FROM vets FULL JOIN specializations on vets.id = specializations.vets_id JOIN visits on vets.id = visits.vets_id JOIN animals on animals.id = visits.animals_id JOIN species on species.id = animals.species_id WHERE vets.name = 'Maisy Smith' GROUP BY vets.name, species.name ORDER BY total_visits_type_animal DESC LIMIT 1; */
+/* ANOTHER WAY AS SUGGESTED BY CR */
+SELECT vets.name, species.name AS species, COUNT(vets.id) AS num_visits FROM visits JOIN animals ON animals.id = visits.animals_id JOIN vets ON vets.id = visits.vets_id JOIN species on species.id = animals.species_id WHERE vets.name = 'Maisy Smith' GROUP BY species.name, vets.name ORDER BY num_visits DESC LIMIT 1;
