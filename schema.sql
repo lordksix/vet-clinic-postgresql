@@ -42,20 +42,20 @@ CREATE TABLE vets (
 );
 
 CREATE TABLE specializations  (
-  vets_id INT NOT NULL,
+  vet_id INT NOT NULL,
   species_id INT NOT NULL,
-  PRIMARY KEY (vets_id, species_id),
-  FOREIGN KEY (vets_id) REFERENCES vets(id) ON UPDATE CASCADE,
+  PRIMARY KEY (vet_id, species_id),
+  FOREIGN KEY (vet_id) REFERENCES vets(id) ON UPDATE CASCADE,
   FOREIGN KEY (species_id) REFERENCES species(id) ON UPDATE CASCADE
 );
 
 CREATE TABLE visits  (
-  vets_id INT NOT NULL,
-  animals_id INT NOT NULL,
+  id SERIAL PRIMARY KEY NOT NULL,
+  vet_id INT NOT NULL,
+  animal_id INT NOT NULL,
   date_of_visit DATE NOT NULL,
-  PRIMARY KEY (vets_id, animals_id, date_of_visit),
-  FOREIGN KEY (vets_id) REFERENCES vets(id) ON UPDATE CASCADE,
-  FOREIGN KEY (animals_id) REFERENCES animals(id) ON UPDATE CASCADE
+  FOREIGN KEY (vet_id) REFERENCES vets(id) ON UPDATE CASCADE,
+  FOREIGN KEY (animal_id) REFERENCES animals(id) ON UPDATE CASCADE
 );
 
 /* PART 5 */
