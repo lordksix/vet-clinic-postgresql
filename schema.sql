@@ -57,3 +57,7 @@ CREATE TABLE visits  (
   FOREIGN KEY (vets_id) REFERENCES vets(id) ON UPDATE CASCADE,
   FOREIGN KEY (animals_id) REFERENCES animals(id) ON UPDATE CASCADE
 );
+
+/* PART 5 */
+
+ALTER TABLE owners ADD COLUMN email VARCHAR(120);
